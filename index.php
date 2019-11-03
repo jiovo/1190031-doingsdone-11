@@ -42,6 +42,7 @@ $tasks = [ [
 	'completed' => 0
 ] ];
 
+//не работает
 
 funciton countProjeckts(array $tasks, $projects) {
 	$count = 0;
