@@ -43,7 +43,6 @@ $tasks = [ [
 ] ];
 
 //не работает
-
 function countProjeckts(array $tasks, $list) {
 	$count = 0;
 	foreach ($tasks as $cat) {
@@ -53,8 +52,6 @@ function countProjeckts(array $tasks, $list) {
 	}
 	return $count;
 };
-
-
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -153,7 +150,6 @@ function countProjeckts(array $tasks, $list) {
 
                         <td class="task__date"><?=$value['date_complite']; ?></td>
                     </tr>
-					
                 </table>
                 <?php endforeach; ?>
             </main>
