@@ -3,7 +3,7 @@
 $show_complete_tasks = rand(0, 1);
 
 // простой массив:
-$projects = ["Вхоящие", "Учеба", "Работа", "Домашние дела", "Авто"];
+$projects = ["Входящие", "Учеба", "Работа", "Домашние дела", "Авто"];
 
 $tasks = [ [
 	'task' => "Собеседование в IT компании", 
@@ -42,6 +42,16 @@ $tasks = [ [
 	'completed' => 0
 ] ];
 
+//не работает
+function countProjeckts(array $tasks, $list) {
+	$count = 0;
+	foreach ($tasks as $cat) {
+	if ($cat['category'] == $list) {
+		$count++;
+		}
+	}
+	return $count;
+};
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -85,8 +95,10 @@ $tasks = [ [
                     <ul class="main-navigation__list">
                     	<?php foreach($projects as $list): ?>
 	                        <li class="main-navigation__list-item">
+	                        <?php if (isset($list)): ?>
 	                            <a class="main-navigation__list-item-link" href="#"><?=$list; ?></a>
-	                            <span class="main-navigation__list-item-count">0</span>
+	                            <span class="main-navigation__list-item-count"><?=countProjeckts($tasks, $list);?></span>
+	                        <?php endif; ?>
 	                        </li>
                     	<?php endforeach; ?>
                     </ul>
@@ -120,12 +132,11 @@ $tasks = [ [
                     </label>
                 </div>
                 <?php foreach($tasks as $key => $value): ?>
-                <table class="tasks <?php if($value['completed'] == 1): ?>task--completed <?php endif; ?>">
-                	<?php if ($show_complete_tasks == 0 && $value['completed']) {
-                		continue;
-                	}
-                	?>
-                    <tr class="tasks__item task">
+                <table class="tasks">
+                	<?php if ($show_complete_tasks == 0 && $value['completed']): ?>
+                		<?php continue; ?>	
+                		<?php endif; ?>
+                    <tr class="tasks__item task  <?php if($value['completed'] == 1): ?>task--completed <?php endif; ?>">
                         <td class="task__select">
                             <label class="checkbox task__checkbox">
                                 <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1">
@@ -139,19 +150,6 @@ $tasks = [ [
 
                         <td class="task__date"><?=$value['date_complite']; ?></td>
                     </tr>
-                    <!--показывать следующий тег <tr/>, если переменная $show_complete_tasks равна единице-->
-                    <?php if ($show_complete_tasks == true): ?>
-                    <tr class="tasks__item task task--completed">
-    					<td class="task__select">
-        					<label class="checkbox task__checkbox">
-            					<input class="checkbox__input visually-hidden" type="checkbox" checked>
-            					<span class="checkbox__text">Записаться на интенсив "Базовый PHP"</span>
-        					</label>
-    					</td>
-    					<td class="task__date">10.10.2019</td>
-    					<td class="task__controls"></td>
-					</tr>
-					<?php endif; ?>
                 </table>
                 <?php endforeach; ?>
             </main>
