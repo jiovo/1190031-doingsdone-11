@@ -17,7 +17,7 @@ $layout_content = include_template('layout.php', [
 	'user_name' => "Константин"
 	]
  );
-
+ 
 print($layout_content);
 
 ?>
