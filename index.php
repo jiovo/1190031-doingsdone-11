@@ -1,8 +1,8 @@
 <?php
 
-require_once('templates/function.php');
+require_once('includes/function.php');
 
-require_once('templates/data.php');
+require_once('includes/data.php');
 
 $main_content = include_template('main.php', [
 	'show_complete_tasks' => $show_complete_tasks,
