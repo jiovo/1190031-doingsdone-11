@@ -38,4 +38,18 @@ function include_template($name, array $data = []) {
 }
 
 
-?>
+date_default_timezone_set("Europe/Moscow");
+
+
+function true_task($date) {
+    $sec_in_hours = 3600;
+    $current_date = strtotime('today');
+    $end_date = strtotime($date);
+    $date_diff = $end_date - $current_date;
+    $time = floor($date_diff / $sec_in_hours);
+    if ($end_date >= $current_date && abs($time) <= 24)
+    {
+        return true;
+    }
+    return false;
+};
