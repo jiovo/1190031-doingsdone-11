@@ -1,0 +1,31 @@
+CREATE DATABASE doingsdone
+DEFAULT CHARACTER SET utf8
+DEFAULT COLLATE utf8_general_ci;
+
+USE doingsdone;
+
+CREATE TABLE category (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	name_category VARCHAR (128) NOT NULL UNIQUE
+);
+
+CREATE TABLE users (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	name VARCHAR(128),
+	email VARCHAR(128) UNIQUE,
+	password CHAR(32),
+	user_add TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE projects (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	category_id INT NOT NULL,
+	user_id INT NOT NULL,
+	task VARCHAR(255),
+	date_complite TIMESTAMP,
+	complite boolean,
+	FOREIGN KEY (category_id) REFERENCES category(id)
+    	ON DELETE CASCADE,
+   	FOREIGN KEY (user_id) REFERENCES users(id)
+   		ON DELETE CASCADE
+);
