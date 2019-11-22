@@ -11,19 +11,19 @@ CREATE TABLE category (
 
 CREATE TABLE users (
 	id INT AUTO_INCREMENT PRIMARY KEY,
-	name VARCHAR(128),
-	email VARCHAR(128) UNIQUE,
-	password CHAR(32),
+	name VARCHAR(128) NOT NULL, 
+	email VARCHAR(128) NOT NULL UNIQUE,
+	password CHAR(32) NOT NULL,
 	user_add TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE projects (
 	id INT AUTO_INCREMENT PRIMARY KEY,
-	category_id INT NOT NULL,
 	user_id INT NOT NULL,
 	task VARCHAR(255),
 	date_complite TIMESTAMP,
-	complite boolean,
+	category_id INT NOT NULL,
+	complited boolean,
 	FOREIGN KEY (category_id) REFERENCES category(id)
     	ON DELETE CASCADE,
    	FOREIGN KEY (user_id) REFERENCES users(id)
